@@ -8,7 +8,6 @@ public class BoardManager : MonoBehaviour
         public bool Passable;
     }
 
-    [SerializeField] private PlayerController _player;
     [SerializeField] private int _boardWidth;
     [SerializeField] private int _boardHeight;
     [SerializeField] private Tile[] _groundTiles;
@@ -24,7 +23,7 @@ public class BoardManager : MonoBehaviour
         _grid = GetComponent<Grid>();
     }
 
-    private void Start()
+    public void Init()
     {
         _boardData = new CellData[_boardWidth, _boardHeight];
 
@@ -49,8 +48,6 @@ public class BoardManager : MonoBehaviour
                 _tilemap.SetTile(new Vector3Int(i,j,0), tile);  
             }
         }
-
-        _player.Spawn(this, new Vector2Int(1, 1));
     }
 
     public Vector3 CellToWorld(Vector2Int cellIndex)
