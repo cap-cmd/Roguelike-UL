@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7457188417190980725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4527209840711227868}
+  - component: {fileID: 2757384370223989248}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4527209840711227868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7457188417190980725}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.9017618, y: 1.2473947, z: -0.012512993}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2757384370223989248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7457188417190980725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242b17d3b13560d4ba607213fa51f61c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstacleTiles:
+  - {fileID: 11400000, guid: 98b53de496004cd4fa51917e1f22af76, type: 2}
+  - {fileID: 11400000, guid: 46661d96b8e0a0444ba73aaeb0a9593d, type: 2}
+  - {fileID: 11400000, guid: 2cd9ea22852c483469b9d79791caa234, type: 2}
+  - {fileID: 11400000, guid: 71c6ab3a09e304744a6dfb1a67a52cc2, type: 2}
+  DestroyObstacleTile:
+  - {fileID: 11400000, guid: 85b39ae6703839848845678f864c1b8b, type: 2}
+  - {fileID: 11400000, guid: ee47c07a1c4586649a7a753823983298, type: 2}
+  - {fileID: 11400000, guid: 52a1fd0786c58a848ba5edc85f483050, type: 2}
+  - {fileID: 11400000, guid: cc8ffda37e2dc124f80f95be09afc2cd, type: 2}
+  hitpoint: 3

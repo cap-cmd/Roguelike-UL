@@ -15,6 +15,7 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private Tile[] _groundTiles;
     [SerializeField] private Tile[] _wallTiles;
     [SerializeField] private FoodObject[] foodPrefabs;
+    [SerializeField] private WallObject wallPrefab;
     [SerializeField] private int minFoodCount;
     [SerializeField] private int maxFoodCount;
 
@@ -57,6 +58,7 @@ public class BoardManager : MonoBehaviour
             }
         }
         _emptyCellList.Remove(new Vector2Int(1, 1));
+        GenerateWall();
         GenetateFood();
     }
 
@@ -74,6 +76,24 @@ public class BoardManager : MonoBehaviour
         return _boardData[cellIndex.x, cellIndex.y];
     }
 
+    public void SetCellTile(Vector2Int cellIndex, Tile tile)
+    {
+        _tilemap.SetTile(new Vector3Int(cellIndex.x, cellIndex.y, 0), tile);
+    }
+
+    public Tile GetCellTile(Vector2Int cellIndex)
+    {
+        return _tilemap.GetTile<Tile>(new Vector3Int(cellIndex.x, cellIndex.y, 0));
+    }
+
+    private void AddObject(CellObject obj, Vector2Int coord)
+    {
+        CellData data = _boardData[coord.x, coord.y];
+        obj.transform.position = CellToWorld(coord);
+        data.ContainedObject = obj;
+        obj.Init(coord);
+    }
+
     private void GenetateFood()
     {
         int foodCount = Random.Range(minFoodCount, maxFoodCount + 1);
@@ -84,10 +104,24 @@ public class BoardManager : MonoBehaviour
             int randomFoodIndex = Random.Range(0, foodPrefabs.Length);
             Vector2Int coord = _emptyCellList[randomCellIndex];
 
-            CellData data = _boardData[coord.x, coord.y];
             FoodObject newFood = Instantiate(foodPrefabs[randomFoodIndex]);
-            newFood.transform.position = CellToWorld(coord);
-            data.ContainedObject = newFood;
+            AddObject(newFood, coord);
+        }
+    }
+
+    private void GenerateWall()
+    {
+        int wallCount = Random.Range(6, 10);
+
+        for (int i = 0; i < wallCount; i++)
+        {
+            int randomIndex = Random.Range(0, _emptyCellList.Count);
+            Vector2Int coord = _emptyCellList[randomIndex];
+            _emptyCellList.RemoveAt(randomIndex);
+
+            WallObject newWall = Instantiate(wallPrefab);
+            AddObject(newWall, coord);
+
         }
     }
 }

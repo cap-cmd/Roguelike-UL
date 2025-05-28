@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public BoardManager BoardManager { get => boardManager;}
+
     [SerializeField] private PlayerController player;
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private UIDocument UIDoc;
