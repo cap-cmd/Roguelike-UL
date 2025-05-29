@@ -16,6 +16,7 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private Tile[] _wallTiles;
     [SerializeField] private FoodObject[] foodPrefabs;
     [SerializeField] private WallObject wallPrefab;
+    [SerializeField] private ExitCellObject exitCellPrefab;
     [SerializeField] private int minFoodCount;
     [SerializeField] private int maxFoodCount;
 
@@ -58,6 +59,11 @@ public class BoardManager : MonoBehaviour
             }
         }
         _emptyCellList.Remove(new Vector2Int(1, 1));
+
+        Vector2Int endCord = new Vector2Int(_boardWidth - 2, _boardHeight - 2);
+        AddObject(Instantiate(exitCellPrefab), endCord);
+        _emptyCellList.Remove(endCord);
+
         GenerateWall();
         GenetateFood();
     }
@@ -86,6 +92,24 @@ public class BoardManager : MonoBehaviour
         return _tilemap.GetTile<Tile>(new Vector3Int(cellIndex.x, cellIndex.y, 0));
     }
 
+    public void CleanLevel()
+    {
+        for (int i = 0; i < _boardWidth; i++)
+        {
+            for (int j = 0; j < _boardHeight; j++)
+            {
+                SetCellTile(new Vector2Int(i, j), null);
+
+                if (_boardData[i, j].ContainedObject != null)
+                {
+                    Destroy(_boardData[i, j].ContainedObject.gameObject);
+                }
+            }
+        }
+        _boardData = null;
+        _emptyCellList = null;
+    }
+
     private void AddObject(CellObject obj, Vector2Int coord)
     {
         CellData data = _boardData[coord.x, coord.y];
@@ -103,6 +127,7 @@ public class BoardManager : MonoBehaviour
             int randomCellIndex = Random.Range(0, _emptyCellList.Count);
             int randomFoodIndex = Random.Range(0, foodPrefabs.Length);
             Vector2Int coord = _emptyCellList[randomCellIndex];
+            _emptyCellList.RemoveAt(randomCellIndex);
 
             FoodObject newFood = Instantiate(foodPrefabs[randomFoodIndex]);
             AddObject(newFood, coord);

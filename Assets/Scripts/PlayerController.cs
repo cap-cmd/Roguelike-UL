@@ -6,9 +6,20 @@ public class PlayerController : MonoBehaviour
 {
     private BoardManager _boardManager;
     private Vector2Int _cellPosition;
+    private bool _isGameOver = false;
 
     private void Update()
     {
+        if (_isGameOver)
+        {
+            if (Keyboard.current.enterKey.wasPressedThisFrame)
+            {
+                GameManager.Instance.StartNewGame();
+                _isGameOver = false;
+            }
+            return;
+        }
+
         Vector2Int newCellTarget = _cellPosition;
         bool hasMoved = false;
 
@@ -39,8 +50,6 @@ public class PlayerController : MonoBehaviour
 
             if (cellData != null && cellData.Passable)
             {
-                GameManager.Instance.TurnManager.Tick();
-                
                 if (cellData.ContainedObject == null)
                 {
                     MoveTo(newCellTarget);
@@ -50,6 +59,7 @@ public class PlayerController : MonoBehaviour
                     MoveTo(newCellTarget);
                     cellData.ContainedObject.PlayerEntered();
                 }
+                GameManager.Instance.TurnManager.Tick();
             }
         }
     }
@@ -58,6 +68,11 @@ public class PlayerController : MonoBehaviour
     {
         _boardManager = boardManager;
         MoveTo(cell);
+    }
+
+    public void GameOver()
+    {
+        _isGameOver = true;
     }
 
     private void MoveTo(Vector2Int cell)

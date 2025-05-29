@@ -100,4 +100,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73b919e3381eff44ac8c050f850d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodScore: 3
+  amountGranted: 3
