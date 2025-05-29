@@ -219,6 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1925da038d457349bc5ff28221a3013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveSpeed: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +710,7 @@ MonoBehaviour:
   - {fileID: 2253492477431122859, guid: 1122da60572a40a44937bf37f1df1b21, type: 3}
   - {fileID: -9092499348047987595, guid: e6f86867e4de42045b3fd5c8679594d2, type: 3}
   wallPrefab: {fileID: 2757384370223989248, guid: 6969ccd8f9504a04a8d9d6668beeb400, type: 3}
+  exitCellPrefab: {fileID: 2441416787431439332, guid: 8a75af5cac4832f4688c9b415c5e547e, type: 3}
   minFoodCount: 3
   maxFoodCount: 3
 --- !u!156049354 &1919267587

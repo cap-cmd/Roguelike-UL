@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController player;
     [SerializeField] private BoardManager boardManager;
     [SerializeField] private UIDocument UIDoc;
-
+    
     public TurnManager TurnManager { get; private set; }
 
     private int _foodAmount = 20;
@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
 
     public void NewLevel()
     {
+        BoardManager.CleanLevel();
         InitLevel();
         _currentLevel += 1;
     }
