@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,8 +12,11 @@ public class PlayerController : MonoBehaviour
     private Vector2Int _cellPosition;
     private bool _isGameOver;
 
+    public Animator Animator { get; private set; }
+
     private void Awake()
     {
+        Animator = GetComponent<Animator>();
         Init();
     }
 

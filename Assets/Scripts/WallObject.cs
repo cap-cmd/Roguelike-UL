@@ -22,6 +22,7 @@ public class WallObject : CellObject
 
     public override bool PlayerWantsToEnter()
     {
+        GameManager.Instance.Player.Animator.SetTrigger("Attack");
         hitpoint -= 1;
         if (hitpoint == 1)
         {

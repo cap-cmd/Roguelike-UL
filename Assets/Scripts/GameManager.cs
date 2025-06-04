@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public BoardManager BoardManager { get => boardManager; }
+    public PlayerController Player { get => player; }
 
     [SerializeField] private PlayerController player;
     [SerializeField] private BoardManager boardManager;
