@@ -16,6 +16,7 @@ public class BoardManager : MonoBehaviour
     [SerializeField] private Tile[] _wallTiles;
     [SerializeField] private FoodObject[] foodPrefabs;
     [SerializeField] private WallObject wallPrefab;
+    [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private ExitCellObject exitCellPrefab;
     [SerializeField] private int minFoodCount;
     [SerializeField] private int maxFoodCount;
@@ -65,7 +66,8 @@ public class BoardManager : MonoBehaviour
         _emptyCellList.Remove(endCord);
 
         GenerateWall();
-        GenetateFood();
+        GenerateFood();
+        GenerateEnemy();
     }
 
     public Vector3 CellToWorld(Vector2Int cellIndex)
@@ -118,7 +120,7 @@ public class BoardManager : MonoBehaviour
         obj.Init(coord);
     }
 
-    private void GenetateFood()
+    private void GenerateFood()
     {
         int foodCount = Random.Range(minFoodCount, maxFoodCount + 1);
 
@@ -147,6 +149,21 @@ public class BoardManager : MonoBehaviour
             WallObject newWall = Instantiate(wallPrefab);
             AddObject(newWall, coord);
 
+        }
+    }
+
+    private void GenerateEnemy()
+    {
+        int enemyCount = Random.Range(1, 4);
+
+        for (int i = 0; i < enemyCount; i++)
+        {
+            int randomIndex = Random.Range(0, _emptyCellList.Count);
+            Vector2Int coord = _emptyCellList[randomIndex];
+            _emptyCellList.RemoveAt(randomIndex);
+
+            Enemy newEnemy = Instantiate(enemyPrefab);
+            AddObject(newEnemy, coord);
         }
     }
 }

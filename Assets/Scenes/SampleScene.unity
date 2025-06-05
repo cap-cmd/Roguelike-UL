@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 431720910}
   - component: {fileID: 431720909}
   - component: {fileID: 431720911}
+  - component: {fileID: 431720912}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -220,6 +221,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
+--- !u!95 &431720912
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431720908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2ddc27d699b3e1244abab0deaba29d75, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +733,7 @@ MonoBehaviour:
   - {fileID: 2253492477431122859, guid: 1122da60572a40a44937bf37f1df1b21, type: 3}
   - {fileID: -9092499348047987595, guid: e6f86867e4de42045b3fd5c8679594d2, type: 3}
   wallPrefab: {fileID: 2757384370223989248, guid: 6969ccd8f9504a04a8d9d6668beeb400, type: 3}
+  enemyPrefab: {fileID: -5278237941611409653, guid: b4fe86f4b22345e47ad5d3f74312f45d, type: 3}
   exitCellPrefab: {fileID: 2441416787431439332, guid: 8a75af5cac4832f4688c9b415c5e547e, type: 3}
   minFoodCount: 3
   maxFoodCount: 3

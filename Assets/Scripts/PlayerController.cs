@@ -11,8 +11,12 @@ public class PlayerController : MonoBehaviour
     private BoardManager _boardManager;
     private Vector2Int _cellPosition;
     private bool _isGameOver;
+    private float _inputBlockDuration = 0;
+    private float _inputLockTime = 0.1f;
 
     public Animator Animator { get; private set; }
+    public Vector2Int CellPosition { get => _cellPosition; }
+
 
     private void Awake()
     {
@@ -24,36 +28,45 @@ public class PlayerController : MonoBehaviour
     {
         Vector2Int newCellTarget = _cellPosition;
         bool hasMoved = false;
+        _inputBlockDuration -= Time.deltaTime;
 
-        if (_isGameOver)
+        if (_inputBlockDuration <= 0)
         {
-            if (Keyboard.current.enterKey.wasPressedThisFrame)
+            if (_isGameOver)
             {
-                GameManager.Instance.StartNewGame();
-                _isGameOver = false;
+                if (Keyboard.current.enterKey.wasPressedThisFrame)
+                {
+                    GameManager.Instance.StartNewGame();
+                    _isGameOver = false;
+                    _inputBlockDuration = _inputLockTime;
+                }
+                return;
             }
-            return;
-        }
-        
-        if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-        {
-            newCellTarget.y += 1;
-            hasMoved = true;
-        }
-        else if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-        {
-            newCellTarget.y -= 1;
-            hasMoved = true;
-        }
-        else if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-        {
-            newCellTarget.x -= 1;
-            hasMoved = true;
-        }
-        else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-        {
-            newCellTarget.x += 1;
-            hasMoved = true;
+
+            if (Keyboard.current.upArrowKey.wasPressedThisFrame)
+            {
+                newCellTarget.y += 1;
+                hasMoved = true;
+                _inputBlockDuration = _inputLockTime;
+            }
+            else if (Keyboard.current.downArrowKey.wasPressedThisFrame)
+            {
+                newCellTarget.y -= 1;
+                hasMoved = true;
+                _inputBlockDuration = _inputLockTime;
+            }
+            else if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
+            {
+                newCellTarget.x -= 1;
+                hasMoved = true;
+                _inputBlockDuration = _inputLockTime;
+            }
+            else if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
+            {
+                newCellTarget.x += 1;
+                hasMoved = true;
+                _inputBlockDuration = _inputLockTime;
+            }
         }
 
         if (_isMoving)
